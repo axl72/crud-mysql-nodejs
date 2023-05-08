@@ -1,0 +1,71 @@
+<%- include('partials/_header.ejs') %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-dark table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i=0; i < data.length; i++){ %>
+          <tr>
+            <td><%= i+1%></td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].address %></td>
+            <td><%= data[i].phone%></td>
+            <td class="d-flex gap-2">
+              <a href="/delete/<%= data[i].id%>" class="btn btn-danger"
+                >Delete</a
+              >
+              <a href="/update/<%= data[i].id%>" class="btn btn-info">Update</a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card-body">
+        <form action="/add" method="post">
+          <div class="form-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="form-control mb-2"
+              autofocus
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              class="form-control mb-2"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone"
+              class="form-control mb-2"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Save Customer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include('partials/_footer.ejs') %>
